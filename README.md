@@ -12,7 +12,7 @@ Y las tecnologías que uso
 
 ## Verla
 
-[mikelvillegas.com](https://mikelvillegas.com)
+[https://mikelvillegas.netlify.app/](https://mikelvillegas.netlify.app/)
 
 ## Hecho con
 
