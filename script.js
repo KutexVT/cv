@@ -14,15 +14,10 @@ function configureMotion() {
   }
   revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
+      entry.target.classList.toggle("is-visible", entry.intersectionRatio >= 0.16);
     });
-  }, { threshold: 0.06, rootMargin: "0px 0px -20px 0px" });
-  revealElements.forEach(element => {
-    if (!element.classList.contains("is-visible")) revealObserver.observe(element);
-  });
+  }, { threshold: 0.16, rootMargin: "0px 0px -12% 0px" });
+  revealElements.forEach(element => revealObserver.observe(element));
 }
 
 configureMotion();

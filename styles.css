@@ -46,7 +46,7 @@ ul { list-style: none; padding: 0; margin: 0; }
 .ambient-grid { position: absolute; inset: 0; opacity: .13; background-image: linear-gradient(rgba(194,193,255,.17) 1px, transparent 1px), linear-gradient(90deg, rgba(194,193,255,.17) 1px, transparent 1px); background-size: 92px 92px; mask-image: linear-gradient(transparent, #fff 35%, transparent 85%); }
 .glass { background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius); backdrop-filter: blur(12px) saturate(1.1); -webkit-backdrop-filter: blur(12px) saturate(1.1); box-shadow: 0 16px 50px rgba(3,6,17,.21), inset 0 1px rgba(255,255,255,.025); }
 .inner-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-small); }
-.site-header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: min(1240px, calc(100% - 64px)); z-index: 30; display: flex; align-items: center; gap: 24px; padding: 12px 18px 12px 24px; border: 1px solid rgba(77,159,255,.24); border-radius: 15px; background: rgba(13,18,32,.82); backdrop-filter: blur(12px); box-shadow: 0 8px 30px rgba(3,6,17,.28), inset 0 1px rgba(255,255,255,.06); }
+.site-header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: min(1240px, calc(100% - 64px)); z-index: 30; display: flex; align-items: center; gap: 24px; padding: 12px 18px 12px 24px; border: 1px solid rgba(77,159,255,.24); border-radius: 15px; background: rgba(13,18,32,.82); backdrop-filter: blur(3px); box-shadow: 0 8px 30px rgba(3,6,17,.28), inset 0 1px rgba(255,255,255,.06); }
 .brand { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
 .monogram { font-size: 1.8rem; letter-spacing: -.14em; font-weight: 800; line-height: 1; }
 .monogram span { color: var(--blue); }
@@ -248,14 +248,10 @@ dialog.is-closing { animation: dialog-out 170ms ease-in both; }
 .dialog-close:hover { background: rgba(194,193,255,.12); }
 #dialog-image { width: 100%; max-height: calc(100dvh - 175px); object-fit: contain; }
 .dialog-hint { font-size: .75rem; color: var(--muted); text-align: center; margin-top: 12px; }
-.reveal { --enter-x: 0px; --enter-y: 24px; --enter-rotate: -.7deg; --enter-scale: .98; }
-[data-reveal="left"] { --enter-x: -36px; --enter-y: 8px; --enter-rotate: -.8deg; }
-[data-reveal="right"] { --enter-x: 36px; --enter-y: 10px; --enter-rotate: .8deg; }
-[data-reveal="down"] { --enter-y: -26px; --enter-rotate: .4deg; }
-[data-reveal="hero"] { --enter-y: 8px; --enter-rotate: 0deg; --enter-scale: .90; }
-.motion-ready .reveal:not(.is-visible) { opacity: 0; transform: translate(var(--enter-x),var(--enter-y)) rotate(var(--enter-rotate)) scale(var(--enter-scale)); }
-.motion-ready .reveal.is-visible { animation: settle 680ms var(--ease); }
-@keyframes settle { 0% { opacity: 0; transform: translate(var(--enter-x),var(--enter-y)) rotate(var(--enter-rotate)) scale(var(--enter-scale)); } 72% { opacity: 1; transform: translate(0,-3px) rotate(0) scale(1.003); } 100% { opacity: 1; transform: none; } }
+.reveal { --enter-x: -36px; }
+[data-reveal="right"], [data-reveal="down"] { --enter-x: 36px; }
+.motion-ready .reveal { transition: opacity 680ms var(--ease), transform 680ms var(--ease); }
+.motion-ready .reveal:not(.is-visible) { opacity: 0; transform: translateX(var(--enter-x)); }
 @keyframes float { 0%,100% { transform: translate(0,0); } 50% { transform: translate(var(--float-x),var(--float-y)); } }
 @keyframes active-border { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
 @keyframes dialog-in { 0% { opacity: 0; transform: translateY(8px) scale(.9); } 75% { opacity: 1; transform: translateY(-2px) scale(1.005); } 100% { transform: none; } }
@@ -284,8 +280,8 @@ dialog.is-closing { animation: dialog-out 170ms ease-in both; }
   .contact-links strong { font-size: .8125rem; }
 }
 @media (max-width: 800px) {
-  [data-reveal="left"] { --enter-x: -8px; --enter-rotate: -.3deg; }
-  [data-reveal="right"] { --enter-x: 8px; --enter-rotate: .3deg; }
+  .reveal { --enter-x: -18px; }
+  [data-reveal="right"], [data-reveal="down"] { --enter-x: 18px; }
   html { scroll-padding-top: 0; }
   main, footer { width: calc(100% - 40px); }
   .site-header { width: calc(100% - 40px); top: 14px; gap: 12px; padding: 12px 15px; }
