@@ -24,9 +24,18 @@ configureMotion();
 motionPreference.addEventListener("change", configureMotion);
 
 const sections = [...document.querySelectorAll("[data-nav]")];
+const nav = document.querySelector("nav");
 const navLinks = [...document.querySelectorAll("nav a")];
 const halos = [...document.querySelectorAll(".halo")];
 let framePending = false;
+
+function moveNavIndicator(link) {
+  nav.style.setProperty("--indicator-x", `${link.offsetLeft}px`);
+  nav.style.setProperty("--indicator-y", `${link.offsetTop}px`);
+  nav.style.setProperty("--indicator-width", `${link.offsetWidth}px`);
+  nav.style.setProperty("--indicator-height", `${link.offsetHeight}px`);
+  nav.classList.add("indicator-ready");
+}
 
 function updateScrollState() {
   framePending = false;
@@ -36,10 +45,15 @@ function updateScrollState() {
     if (section.getBoundingClientRect().top <= guide) active = section;
   });
   if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 3) active = sections.at(-1);
+  let activeLink;
   navLinks.forEach(link => {
-    if (link.hash === `#${active.id}`) link.setAttribute("aria-current", "location");
-    else link.removeAttribute("aria-current");
+    const isActive = link.hash === `#${active.id}`;
+    if (isActive) {
+      link.setAttribute("aria-current", "location");
+      activeLink = link;
+    } else link.removeAttribute("aria-current");
   });
+  moveNavIndicator(activeLink);
   if (!motionPreference.matches) {
     const displacement = Math.min(window.scrollY * 0.012, 55);
     halos.forEach((halo, index) => {
