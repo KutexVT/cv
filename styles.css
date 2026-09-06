@@ -1,7 +1,10 @@
 :root {
   --bg: #0d1220;
-  --glass: rgba(13, 18, 32, 0.80);
-  --glass-float: rgba(13, 18, 32, 0.92);
+  --glass: rgba(13, 18, 32, 0.82);
+  --glass-float: var(--glass);
+  --glass-blur: blur(3px);
+  --glass-border: rgba(77, 159, 255, 0.24);
+  --glass-shadow: 0 8px 30px rgba(3, 6, 17, 0.28), inset 0 1px rgba(255, 255, 255, 0.06);
   --blue: #4d9fff;
   --violet: #7c3aed;
   --lavender: #c2c1ff;
@@ -250,6 +253,28 @@ dialog.is-closing { animation: dialog-out 170ms ease-in both; }
 .dialog-close:hover { background: rgba(194,193,255,.12); }
 #dialog-image { width: 100%; max-height: calc(100dvh - 175px); object-fit: contain; }
 .dialog-hint { font-size: .75rem; color: var(--muted); text-align: center; margin-top: 12px; }
+/* El mismo vidrio de la barra en las superficies de la página */
+.glass, .site-header, .float-badge, dialog,
+.inner-card, .button, .icon-tile, .contact-arrow, .contact-links a,
+.expand-label, .portrait-frame {
+  background: var(--glass);
+  border-color: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+}
+.nav-contact, .dialog-close, .tech-tags li, .feature-flow span {
+  background: rgba(77, 159, 255, 0.06);
+  border-color: var(--glass-border);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+}
+.primary { color: #9acaff; border-color: var(--blue); box-shadow: var(--glass-shadow), inset 0 -2px var(--blue); }
+.primary:hover, .secondary:hover, .contact-links a:hover, .dialog-close:hover, .nav-contact:hover {
+  background: rgba(77, 159, 255, 0.13);
+  border-color: var(--blue);
+}
+.taxi-cover, .mep-cover, .os-cover, .certificate-image { background: rgba(77, 159, 255, 0.06); }
+.hero::before, .active-edge { opacity: .2; }
 .reveal { --enter-x: -36px; }
 [data-reveal="right"], [data-reveal="down"] { --enter-x: 36px; }
 .motion-ready .reveal { transition: opacity 680ms var(--ease), transform 680ms var(--ease); }
