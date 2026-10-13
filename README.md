@@ -1,43 +1,43 @@
-# Mikel Villegas · Desarrollo web freelance
+# Mi CV
 
-Mi portafolio: proyectos, experiencia y formación en un sitio estático pensado para quien busca construir una página o un sistema web.
+Hice esta página para tener todo lo que hago en un solo lugar
 
-[Ver la página](https://kutexvt.github.io/cv/)
+Mis proyectos
 
-## Desarrollo local
+Mi experiencia
 
-```sh
-python3 -m http.server 8765 --bind 127.0.0.1
+Mis certificaciones
+
+Y las tecnologías que uso
+
+## Verla
+
+[https://mikelvillegas.netlify.app/](https://mikelvillegas.netlify.app/)
+
+## Hecho con
+
+- HTML
+- CSS
+- JavaScript
+
+Nada raro xq para esto no hacía falta
+
+## Correrla
+
+```bash
+python3 -m http.server 8765
 ```
 
-Abre http://127.0.0.1:8765. No requiere instalación de dependencias ni compilación.
+Después abre [127.0.0.1:8765](http://127.0.0.1:8765)
 
-## Diseño
+## Que tiene
 
-Fondo oscuro, azul y violeta. Glassmorphism en todo el currículo: superficies translúcidas, desenfoque de fondo, bordes suaves y luz ambiental. Composición asimétrica, retrato integrado y portadas descriptivas para Taxis, Horarios MEP y KutexOS. Las portadas son conceptos visuales de los proyectos, no capturas de sus interfaces.
+- Diseño adaptable para teléfono y computadora
+- Animaciones al bajar y subir
+- Navegación que sigue la sección actual
+- Certificados que se pueden abrir completos
+- Soporte para `prefers-reduced-motion`
 
-Space Grotesk e IBM Plex Mono están alojadas en `assets/fonts/` con sus licencias SIL Open Font License. Fuentes originales: [Google Fonts](https://github.com/google/fonts).
+## Estado
 
-## Comportamiento
-
-- Adaptación móvil desde 320 px con menú desplegable
-- Navegación por teclado, foco visible y enlace para saltar al contenido
-- Certificados ampliables con Escape y devolución del foco
-- Animación breve de entrada y transiciones de proyectos sin alterar el desplazamiento
-- Respeto de `prefers-reduced-motion` y `prefers-reduced-transparency`
-- Superficies sólidas de respaldo cuando el navegador no admite `backdrop-filter`
-- Contenido, navegación y enlaces de certificados utilizables sin JavaScript
-
-## Publicación
-
-GitHub Pages publica la rama `main` desde la raíz. Los recursos utilizan rutas relativas para funcionar bajo `/cv/`.
-
-## Comprobaciones
-
-```sh
-node --check script.js
-node --test tests/interactions.test.cjs
-git diff --check
-```
-
-La revisión visual se hace en escritorio a 1440 px y móvil a 390 y 320 px. Comprueba menú, navegación, certificados y contacto después de cualquier cambio.
+La sigo actualizando cuando hago algo nuevo
