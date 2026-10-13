@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T06:20:22Z",
+  "generatedAt": "2026-10-13T06:38:26Z",
   "title": "Design System: Mikel Villegas / MV_",
   "extensions": {
     "colorMeta": {
@@ -13,7 +13,10 @@
       "text": {"role":"neutral","displayName":"Clear White","tonalRamp":["oklch(15% .01 280)","oklch(26% .01 280)","oklch(38% .01 280)","oklch(49% .01 280)","oklch(61% .01 280)","oklch(72% .01 280)","oklch(84% .01 280)","oklch(95% .01 280)"]},
       "text-soft": {"role":"neutral","displayName":"Soft White","tonalRamp":["oklch(15% .02 275)","oklch(26% .02 275)","oklch(38% .02 275)","oklch(49% .02 275)","oklch(61% .02 275)","oklch(72% .02 275)","oklch(84% .02 275)","oklch(95% .02 275)"]},
       "muted": {"role":"neutral","displayName":"Slate","tonalRamp":["oklch(15% .03 264)","oklch(26% .03 264)","oklch(38% .03 264)","oklch(49% .03 264)","oklch(61% .03 264)","oklch(72% .03 264)","oklch(84% .03 264)","oklch(95% .03 264)"]},
-      "border": {"role":"neutral","displayName":"Divider Slate","tonalRamp":["oklch(15% .04 265)","oklch(26% .04 265)","oklch(38% .04 265)","oklch(49% .04 265)","oklch(61% .04 265)","oklch(72% .04 265)","oklch(84% .04 265)","oklch(95% .04 265)"]}
+      "border": {"role":"neutral","displayName":"Divider Slate","tonalRamp":["oklch(15% .04 265)","oklch(26% .04 265)","oklch(38% .04 265)","oklch(49% .04 265)","oklch(61% .04 265)","oklch(72% .04 265)","oklch(84% .04 265)","oklch(95% .04 265)"]},
+      "glass":{"role":"neutral","displayName":"Navy Glass","tonalRamp":["oklch(15% .03 267 / .66)","oklch(26% .03 267 / .66)","oklch(38% .03 267 / .66)","oklch(49% .03 267 / .66)","oklch(61% .03 267 / .66)","oklch(72% .03 267 / .66)","oklch(84% .03 267 / .66)","oklch(95% .03 267 / .66)"]},
+      "glass-border":{"role":"neutral","displayName":"Lavender Glass Edge","tonalRamp":["oklch(15% .09 284 / .22)","oklch(26% .09 284 / .22)","oklch(38% .09 284 / .22)","oklch(49% .09 284 / .22)","oklch(61% .09 284 / .22)","oklch(72% .09 284 / .22)","oklch(84% .09 284 / .22)","oklch(95% .09 284 / .22)"]},
+      "secondary-wash":{"role":"neutral","displayName":"Secondary Wash","tonalRamp":["oklch(15% .09 284 / .06)","oklch(26% .09 284 / .06)","oklch(38% .09 284 / .06)","oklch(49% .09 284 / .06)","oklch(61% .09 284 / .06)","oklch(72% .09 284 / .06)","oklch(84% .09 284 / .06)","oklch(95% .09 284 / .06)"]}
     },
     "typographyMeta": {
       "display":{"displayName":"Display","purpose":"Large hero statement; responsive overrides are recorded in DESIGN.md."},
@@ -22,7 +25,18 @@
       "body":{"displayName":"Body","purpose":"Regular sans-serif prose and interface text."},
       "label":{"displayName":"Technical label","purpose":"Monospaced technology lists; dates and other metadata use nearby sizes."}
     },
-    "shadows": [],
+    "shadows": [
+      {"name":"glass-shadow","value":"0 20px 48px rgba(3,6,17,.25),inset 0 1px 0 rgba(244,245,252,.09)","purpose":"Shared header, section, footer, dialog and portrait-plane depth."},
+      {"name":"primary-highlight","value":"inset 0 1px rgba(244,245,252,.35),0 6px 18px rgba(3,6,17,.14)","purpose":"Primary button shine and soft lift."},
+      {"name":"cover-highlight","value":"inset 0 1px rgba(244,245,252,.1)","purpose":"Project artwork and certificate preview edges."}
+    ],
+    "materials": [
+      {"name":"glass-shine","value":"linear-gradient(135deg,rgba(194,193,255,.07),rgba(77,159,255,.025) 45%,rgba(124,58,237,.055))","purpose":"Shared panel surface gradient over the glass color."},
+      {"name":"glass-blur","value":"blur(20px) saturate(135%)","purpose":"Shared header, sections, footer and dialog."},
+      {"name":"artwork-blur","value":"blur(12px)","purpose":"Project covers and portrait plane."},
+      {"name":"secondary-blur","value":"blur(10px)","purpose":"Secondary action."},
+      {"name":"background-light","value":"radial-gradient(ellipse at 8% 12%,rgba(77,159,255,.3),transparent 52%),radial-gradient(ellipse at 90% 38%,rgba(124,58,237,.32),transparent 56%),radial-gradient(ellipse at 25% 100%,rgba(245,178,224,.12),transparent 50%)","purpose":"Fixed native blue, violet and pink light behind glass panels."}
+    ],
     "motion": [
       {"name":"ease","value":"cubic-bezier(.16,1,.3,1)","purpose":"Graphic reveals and translated hover states."},
       {"name":"navigation-color","value":"180ms","purpose":"Navigation color transitions."},
@@ -41,14 +55,14 @@
   },
   "components": [
     {
-      "name":"Primary Button","kind":"button","refersTo":"button-primary","description":"Blue main action with a directional arrow and a small hover lift.",
+      "name":"Primary Button","kind":"button","refersTo":"button-primary","description":"Blue main action with a diagonal shine, directional arrow and small hover lift.",
       "html":"<a class=\"ds-button-primary\" href=\"#proyectos\">Ver proyectos <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
-      "css":".ds-button-primary{min-height:52px;padding:13px 22px;display:inline-flex;justify-content:center;align-items:center;gap:22px;font-family:var(--display,\"Space Grotesk\",sans-serif);font-size:.9375rem;font-weight:500;line-height:1.7;text-decoration:none;border:1px solid transparent;border-radius:var(--radius,12px);background:var(--blue,#4d9fff);color:var(--bg,#0d1220);transition:background-color 220ms,transform 220ms var(--ease,cubic-bezier(.16,1,.3,1)),color 220ms}.ds-button-primary svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.ds-button-primary:hover{background:var(--lavender,#c2c1ff);transform:translateY(-3px)}.ds-button-primary:active{transform:translateY(0)}.ds-button-primary:focus-visible{outline:2px solid var(--blue,#4d9fff);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button-primary{transition:none}}"
+      "css":".ds-button-primary{min-height:52px;padding:13px 22px;display:inline-flex;justify-content:center;align-items:center;gap:22px;font-family:var(--display,\"Space Grotesk\",sans-serif);font-size:.9375rem;font-weight:500;line-height:1.7;text-decoration:none;border:1px solid transparent;border-radius:var(--radius,16px);background:linear-gradient(135deg,rgba(244,245,252,.2),transparent),var(--blue,#4d9fff);box-shadow:inset 0 1px rgba(244,245,252,.35),0 6px 18px rgba(3,6,17,.14);color:var(--bg,#0d1220);transition:background-color 220ms,transform 220ms var(--ease,cubic-bezier(.16,1,.3,1)),color 220ms}.ds-button-primary svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.ds-button-primary:hover{background:var(--lavender,#c2c1ff);transform:translateY(-3px)}.ds-button-primary:active{transform:translateY(0)}.ds-button-primary:focus-visible{outline:2px solid var(--blue,#4d9fff);outline-offset:6px}@media(max-width:767px){.ds-button-primary{padding-inline:18px;gap:16px}}@media(max-width:359px){.ds-button-primary{padding-inline:15px;gap:12px;font-size:.875rem}}@media(prefers-reduced-motion:reduce){.ds-button-primary{transition:none}}"
     },
     {
-      "name":"Secondary Button","kind":"button","refersTo":"button-secondary","description":"Transparent contact action with a quiet structural border.",
+      "name":"Secondary Button","kind":"button","refersTo":"button-secondary","description":"Translucent lavender contact action with a glass edge and backdrop blur.",
       "html":"<a class=\"ds-button-secondary\" href=\"#contacto\">Contactar <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a>",
-      "css":".ds-button-secondary{min-height:52px;padding:13px 22px;display:inline-flex;justify-content:center;align-items:center;gap:22px;font-family:var(--display,\"Space Grotesk\",sans-serif);font-size:.9375rem;font-weight:500;line-height:1.7;text-decoration:none;border:1px solid var(--border,#303a50);border-radius:var(--radius,12px);background:transparent;color:var(--text,#f4f5fc);transition:background-color 220ms,transform 220ms var(--ease,cubic-bezier(.16,1,.3,1)),color 220ms}.ds-button-secondary svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.ds-button-secondary:hover{background:var(--surface,#141b2d);transform:translateY(-3px)}.ds-button-secondary:active{transform:translateY(0)}.ds-button-secondary:focus-visible{outline:2px solid var(--blue,#4d9fff);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button-secondary{transition:none}}"
+      "css":".ds-button-secondary{min-height:52px;padding:13px 22px;display:inline-flex;justify-content:center;align-items:center;gap:22px;font-family:var(--display,\"Space Grotesk\",sans-serif);font-size:.9375rem;font-weight:500;line-height:1.7;text-decoration:none;border:1px solid var(--glass-border,rgba(194,193,255,.22));border-radius:var(--radius,16px);background:rgba(194,193,255,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--text,#f4f5fc);transition:background-color 220ms,transform 220ms var(--ease,cubic-bezier(.16,1,.3,1)),color 220ms}.ds-button-secondary svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.ds-button-secondary:hover{background:var(--surface,#141b2d);transform:translateY(-3px)}.ds-button-secondary:active{transform:translateY(0)}.ds-button-secondary:focus-visible{outline:2px solid var(--blue,#4d9fff);outline-offset:6px}@media(max-width:767px){.ds-button-secondary{padding-inline:18px;gap:16px}}@media(max-width:359px){.ds-button-secondary{padding-inline:15px;gap:12px;font-size:.875rem}}@media(prefers-reduced-transparency:reduce){.ds-button-secondary{background:var(--surface,#141b2d);backdrop-filter:none;-webkit-backdrop-filter:none}}@media(prefers-reduced-motion:reduce){.ds-button-secondary{transition:none}}"
     },
     {
       "name":"Navigation","kind":"nav","refersTo":"navigation-link","description":"Small open navigation links with lavender current-location and contact emphasis.",
@@ -68,14 +82,14 @@
   ],
   "narrative": {
     "northStar":"An Open Technical Portfolio",
-    "overview":"A personal, technical world built from dark navy, large sans-serif statements and native geometric compositions. The layout is spacious and asymmetric; professional supporting content remains quiet enough for the work to lead.\n\nThe expressive portrait is a true transparent cutout against a rotated violet plane. Project artwork has its own geometric vocabulary and is clearly identified as a concept or identity, rather than a product screenshot.",
-    "keyCharacteristics":["Open typographic composition with alternating visual weight","Navy foundations with blue actions and lavender emphasis","Local display and mono fonts with restrained technical labels","Real portrait and native geometric project artwork","Small purposeful motion with a complete reduced-motion path"],
+    "overview":"A personal, technical world built from dark navy, large sans-serif statements, native geometric compositions and glassmorphism throughout the portfolio. Translucent framed sections reveal fixed blue, violet and pink light behind them; professional supporting content remains quiet enough for the work to lead.\n\nThe expressive portrait is a true transparent cutout against a rotated violet glass plane. Project artwork has its own geometric vocabulary and is clearly identified as a concept or identity, rather than a product screenshot. Solid surface alternatives preserve legibility when blur is unsupported or reduced transparency is requested.",
+    "keyCharacteristics":["Open typographic composition with alternating visual weight","Navy foundations with blue actions and lavender emphasis","Shared translucent glass frames over fixed colored light","Local display and mono fonts with restrained technical labels","Real portrait and native geometric project artwork","Small purposeful motion with a complete reduced-motion path"],
     "rules":[
       {"name":"The Accent Purpose Rule","body":"Blue identifies actions and small signals; lavender carries readable emphasis; violet is a graphic plane rather than a text surface.","section":"colors"},
       {"name":"The Two Voices Rule","body":"Use the sans family for the human message and the mono family for technical supporting detail.","section":"typography"},
       {"name":"The Visible Focus Rule","body":"Every interactive link and button uses a blue (2px) focus outline with (6px) offset.","section":"components"}
     ],
-    "dos":["**Do** preserve spacious asymmetry on desktop and a clear single-column mobile reading order","**Do** keep cutout imagery separate from readable captions","**Do** identify concept artwork explicitly and retain genuine project states","**Do** use small component or graphic motion with visible keyboard focus and reduced-motion support"],
-    "donts":["**Don't** replace native project concepts with fabricated product screenshots","**Don't** turn status text or technical lists into decorative pills","**Don't** add generic shadows to a system whose depth comes from geometry and tone","**Don't** animate entire repeated project rows as a reveal pattern"]
+    "dos":["**Do** preserve spacious asymmetry on desktop and a clear single-column mobile reading order","**Do** keep cutout imagery separate from readable captions","**Do** apply the shared glass material consistently and preserve opaque accessibility fallbacks","**Do** identify concept artwork explicitly and retain genuine project states","**Do** use small component or graphic motion with visible keyboard focus and reduced-motion support"],
+    "donts":["**Don't** replace native project concepts with fabricated product screenshots","**Don't** turn status text or technical lists into decorative pills","**Don't** trade readable content or visible focus for transparency","**Don't** animate entire repeated project rows as a reveal pattern"]
   }
 }

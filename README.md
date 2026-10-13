@@ -14,7 +14,7 @@ Abre http://127.0.0.1:8765. No requiere instalación de dependencias ni compilac
 
 ## Diseño
 
-Fondo oscuro, azul y violeta. Composición asimétrica, retrato integrado y portadas descriptivas para Taxis, Horarios MEP y KutexOS. Las portadas son conceptos visuales de los proyectos, no capturas de sus interfaces.
+Fondo oscuro, azul y violeta. Glassmorphism en todo el currículo: superficies translúcidas, desenfoque de fondo, bordes suaves y luz ambiental. Composición asimétrica, retrato integrado y portadas descriptivas para Taxis, Horarios MEP y KutexOS. Las portadas son conceptos visuales de los proyectos, no capturas de sus interfaces.
 
 Space Grotesk e IBM Plex Mono están alojadas en `assets/fonts/` con sus licencias SIL Open Font License. Fuentes originales: [Google Fonts](https://github.com/google/fonts).
 
@@ -24,7 +24,8 @@ Space Grotesk e IBM Plex Mono están alojadas en `assets/fonts/` con sus licenci
 - Navegación por teclado, foco visible y enlace para saltar al contenido
 - Certificados ampliables con Escape y devolución del foco
 - Animación breve de entrada y transiciones de proyectos sin alterar el desplazamiento
-- Respeto de `prefers-reduced-motion`
+- Respeto de `prefers-reduced-motion` y `prefers-reduced-transparency`
+- Superficies sólidas de respaldo cuando el navegador no admite `backdrop-filter`
 - Contenido, navegación y enlaces de certificados utilizables sin JavaScript
 
 ## Publicación

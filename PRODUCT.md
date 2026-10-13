@@ -20,7 +20,7 @@ Sitio estático en HTML, CSS y JavaScript. Conserva sus anclas existentes, enlac
 
 ## Brand Commitments
 
-Mikel Villegas / MV_. Identidad oscura y tecnológica con fondo #0d1220, azul #4d9fff y violeta #7c3aed; lavanda y rosa secundarios. Composición experimental aprobada. Space Grotesk e IBM Plex Mono alojadas localmente. Texto claro en español y trato directo.
+Mikel Villegas / MV_. Identidad oscura y tecnológica con fondo #0d1220, azul #4d9fff y violeta #7c3aed; lavanda y rosa secundarios. Composición experimental aprobada. Glassmorphism en todo el currículo solicitado explícitamente por Mikel: paneles translúcidos, bordes luminosos, desenfoque y sombras suaves sobre iluminación azul, violeta y rosa. Conservar superficies opacas cuando no se admita el desenfoque o se solicite transparencia reducida. Space Grotesk e IBM Plex Mono alojadas localmente. Texto claro en español y trato directo.
 
 ## Evidence on Hand
 
