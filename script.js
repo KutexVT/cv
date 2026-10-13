@@ -1,121 +1,84 @@
 "use strict";
 
-const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-const revealElements = document.querySelectorAll("[data-reveal]");
-let revealObserver;
+const menuButton = document.querySelector(".menu-toggle");
+const header = document.querySelector(".site-header");
+const navigation = document.querySelector("#main-nav");
+const mobile = window.matchMedia("(max-width: 767px)");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const navLinks = [...navigation.querySelectorAll("a")];
 
-function configureMotion() {
-  revealObserver?.disconnect();
-  document.documentElement.classList.toggle("motion-ready", !motionPreference.matches);
-  if (motionPreference.matches || !("IntersectionObserver" in window)) {
-    revealElements.forEach(element => element.classList.add("is-visible"));
-    document.querySelectorAll(".halo").forEach(halo => halo.style.removeProperty("transform"));
-    return;
-  }
-  revealObserver = new IntersectionObserver(entries => {
+function setMenu(open, returnFocus = false) {
+  header.classList.toggle("menu-open", open);
+  menuButton.setAttribute("aria-expanded", String(open));
+  if (returnFocus) menuButton.focus();
+}
+
+menuButton.hidden = false;
+header.classList.add("nav-enhanced");
+menuButton.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true"));
+navLinks.forEach(link => link.addEventListener("click", () => {
+  if (mobile.matches) setMenu(false, true);
+}));
+header.addEventListener("keydown", event => {
+  if (event.key === "Escape" && header.classList.contains("menu-open")) setMenu(false, true);
+});
+header.addEventListener("focusout", event => {
+  if (mobile.matches && event.relatedTarget && !header.contains(event.relatedTarget)) setMenu(false);
+});
+mobile.addEventListener("change", () => setMenu(false));
+
+if ("IntersectionObserver" in window) {
+  const sectionObserver = new IntersectionObserver(entries => {
+    const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    if (!visible.length) return;
+    navLinks.forEach(link => {
+      if (link.hash === `#${visible[0].target.id}`) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  }, { rootMargin: "-10% 0px -55% 0px", threshold: 0 });
+  document.querySelectorAll("[data-nav]").forEach(section => sectionObserver.observe(section));
+
+  const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      entry.target.classList.toggle("is-visible", entry.intersectionRatio >= 0.16);
+      if (!entry.isIntersecting) return;
+      if (!reducedMotion.matches) entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
     });
-  }, { threshold: 0.16, rootMargin: "0px 0px -12% 0px" });
-  revealElements.forEach(element => revealObserver.observe(element));
+  }, { threshold: .12 });
+  document.querySelectorAll("[data-reveal]").forEach(element => revealObserver.observe(element));
 }
-
-configureMotion();
-motionPreference.addEventListener("change", configureMotion);
-
-const sections = [...document.querySelectorAll("[data-nav]")];
-const nav = document.querySelector("nav");
-const navLinks = [...document.querySelectorAll("nav a")];
-const halos = [...document.querySelectorAll(".halo")];
-let framePending = false;
-
-function moveNavIndicator(link) {
-  nav.style.setProperty("--indicator-x", `${link.offsetLeft}px`);
-  nav.style.setProperty("--indicator-y", `${link.offsetTop}px`);
-  nav.style.setProperty("--indicator-width", `${link.offsetWidth}px`);
-  nav.style.setProperty("--indicator-height", `${link.offsetHeight}px`);
-  nav.classList.add("indicator-ready");
-}
-
-function updateScrollState() {
-  framePending = false;
-  const guide = Math.min(window.innerHeight * 0.35, 250);
-  let active = sections[0];
-  sections.forEach(section => {
-    if (section.getBoundingClientRect().top <= guide) active = section;
-  });
-  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 3) active = sections.at(-1);
-  let activeLink;
-  navLinks.forEach(link => {
-    const isActive = link.hash === `#${active.id}`;
-    if (isActive) {
-      link.setAttribute("aria-current", "location");
-      activeLink = link;
-    } else link.removeAttribute("aria-current");
-  });
-  moveNavIndicator(activeLink);
-  if (!motionPreference.matches) {
-    const displacement = Math.min(window.scrollY * 0.012, 55);
-    halos.forEach((halo, index) => {
-      halo.style.transform = `translate3d(0, ${displacement * (index % 2 ? -1 : 1)}px, 0)`;
-    });
-  }
-}
-
-function requestScrollUpdate() {
-  if (!framePending) {
-    framePending = true;
-    window.requestAnimationFrame(updateScrollState);
-  }
-}
-
-window.addEventListener("scroll", requestScrollUpdate, { passive: true });
-window.addEventListener("resize", requestScrollUpdate);
-updateScrollState();
 
 const dialog = document.querySelector("#certificate-dialog");
 const dialogImage = document.querySelector("#dialog-image");
 const dialogTitle = document.querySelector("#dialog-title");
-const closeButton = dialog.querySelector(".dialog-close");
-let closeTimer;
 let certificateTrigger;
 
-document.querySelectorAll("[data-certificate]").forEach(button => {
-  button.addEventListener("click", () => {
-    const image = button.querySelector("img");
-    certificateTrigger = button;
-    clearTimeout(closeTimer);
-    dialog.classList.remove("is-closing");
-    dialogImage.src = image.getAttribute("src");
-    dialogImage.alt = image.alt;
-    dialogTitle.textContent = button.closest("article").querySelector("h4").textContent;
-    dialog.showModal();
+// Keep direct image links working in browsers without native dialog support.
+if (typeof dialog.showModal === "function") {
+  document.querySelectorAll("[data-certificate]").forEach(link => {
+    link.setAttribute("aria-haspopup", "dialog");
+    link.setAttribute("aria-controls", "certificate-dialog");
+    link.addEventListener("click", event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      certificateTrigger = link;
+      const certificate = link.closest(".certificate");
+      const image = certificate.querySelector("img");
+      dialogImage.src = image.getAttribute("src");
+      dialogImage.alt = image.alt;
+      dialogTitle.textContent = certificate.querySelector("h3").textContent;
+      dialog.showModal();
+    });
   });
-});
-
-function closeCertificate() {
-  if (!dialog.open || dialog.classList.contains("is-closing")) return;
-  if (motionPreference.matches) {
-    dialog.close();
-    return;
-  }
-  dialog.classList.add("is-closing");
-  closeTimer = window.setTimeout(() => dialog.close(), 170);
+  dialog.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
+  let backdropPress = false;
+  dialog.addEventListener("pointerdown", event => { backdropPress = event.target === dialog; });
+  dialog.addEventListener("click", event => {
+    if (backdropPress && event.target === dialog) {
+      const bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+    }
+    backdropPress = false;
+  });
+  dialog.addEventListener("close", () => certificateTrigger?.focus({ preventScroll: true }));
 }
-
-closeButton.addEventListener("click", closeCertificate);
-dialog.addEventListener("cancel", event => {
-  event.preventDefault();
-  closeCertificate();
-});
-let backdropPress = false;
-dialog.addEventListener("pointerdown", event => { backdropPress = event.target === dialog; });
-dialog.addEventListener("click", event => {
-  if (backdropPress && event.target === dialog) closeCertificate();
-  backdropPress = false;
-});
-dialog.addEventListener("close", () => {
-  clearTimeout(closeTimer);
-  dialog.classList.remove("is-closing");
-  certificateTrigger?.focus({ preventScroll: true });
-});

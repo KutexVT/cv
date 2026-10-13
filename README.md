@@ -1,43 +1,42 @@
-# Mi CV
+# Mikel Villegas · Desarrollo web freelance
 
-Hice esta página para tener todo lo que hago en un solo lugar
+Mi portafolio: proyectos, experiencia y formación en un sitio estático pensado para quien busca construir una página o un sistema web.
 
-Mis proyectos
+[Ver la página](https://kutexvt.github.io/cv/)
 
-Mi experiencia
+## Desarrollo local
 
-Mis certificaciones
-
-Y las tecnologías que uso
-
-## Verla
-
-[https://mikelvillegas.netlify.app/](https://mikelvillegas.netlify.app/)
-
-## Hecho con
-
-- HTML
-- CSS
-- JavaScript
-
-Nada raro xq para esto no hacía falta
-
-## Correrla
-
-```bash
-python3 -m http.server 8765
+```sh
+python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-Después abre [127.0.0.1:8765](http://127.0.0.1:8765)
+Abre http://127.0.0.1:8765. No requiere instalación de dependencias ni compilación.
 
-## Que tiene
+## Diseño
 
-- Diseño adaptable para teléfono y computadora
-- Animaciones al bajar y subir
-- Navegación que sigue la sección actual
-- Certificados que se pueden abrir completos
-- Soporte para `prefers-reduced-motion`
+Fondo oscuro, azul y violeta. Composición asimétrica, retrato integrado y portadas descriptivas para Taxis, Horarios MEP y KutexOS. Las portadas son conceptos visuales de los proyectos, no capturas de sus interfaces.
 
-## Estado
+Space Grotesk e IBM Plex Mono están alojadas en `assets/fonts/` con sus licencias SIL Open Font License. Fuentes originales: [Google Fonts](https://github.com/google/fonts).
 
-La sigo actualizando cuando hago algo nuevo
+## Comportamiento
+
+- Adaptación móvil desde 320 px con menú desplegable
+- Navegación por teclado, foco visible y enlace para saltar al contenido
+- Certificados ampliables con Escape y devolución del foco
+- Animación breve de entrada y transiciones de proyectos sin alterar el desplazamiento
+- Respeto de `prefers-reduced-motion`
+- Contenido, navegación y enlaces de certificados utilizables sin JavaScript
+
+## Publicación
+
+GitHub Pages publica la rama `main` desde la raíz. Los recursos utilizan rutas relativas para funcionar bajo `/cv/`.
+
+## Comprobaciones
+
+```sh
+node --check script.js
+node --test tests/interactions.test.cjs
+git diff --check
+```
+
+La revisión visual se hace en escritorio a 1440 px y móvil a 390 y 320 px. Comprueba menú, navegación, certificados y contacto después de cualquier cambio.
