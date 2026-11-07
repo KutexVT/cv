@@ -172,6 +172,13 @@ dd { margin: 0; color: var(--text-soft); }
 .projects-pair .project-body { min-height: 380px; }
 .projects-pair .project-link { margin-top: auto; }
 .projects-pair .tech-tags, .projects-pair .stack-note { margin-bottom: 20px; }
+.business-cover { border-right: 1px solid var(--border); border-bottom: 0; }
+.business-cover .mep-title { margin-top: auto; padding-top: 30px; font-size: clamp(2.5rem, 4.4vw, 4.15rem); }
+.business-cover .feature-flow { margin-bottom: 30px; }
+.ai-practice h3 { margin-top: 0; font-size: 1.5rem; letter-spacing: -.03em; }
+.ai-practice p { margin-top: 19px; }
+.ai-practice .text-link { margin-top: 23px; }
+@media (max-width: 800px) { .business-cover { border-right: 0; border-bottom: 1px solid var(--border); } }
 .experience-layout { display: grid; grid-template-columns: .75fr 1.5fr; padding: 40px; gap: 54px; }
 .experience-intro { align-self: start; }
 .large-code { font-family: var(--mono); font-size: 3.5rem; color: var(--lavender); line-height: 1.2; }
