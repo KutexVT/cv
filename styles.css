@@ -131,6 +131,7 @@ dl { margin: 0; }
 dt { color: var(--muted); }
 dd { margin: 0; color: var(--text-soft); }
 .project { overflow: hidden; display: flex; flex-direction: column; transition: transform 185ms var(--ease); }
+#polacos { scroll-margin-top: 105px; }
 @media (hover: hover) { .project:hover, .stack-card:hover, .certificate:hover { transform: translateY(-2px); } }
 .featured { display: grid; grid-template-columns: .95fr 1fr; margin-bottom: 24px; }
 .project-cover { position: relative; padding: 25px 30px; min-height: 262px; overflow: hidden; display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
